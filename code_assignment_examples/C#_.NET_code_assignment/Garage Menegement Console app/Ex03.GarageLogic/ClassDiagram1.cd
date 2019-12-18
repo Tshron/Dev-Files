@@ -1,0 +1,166 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Ex03.GarageLogic.Car">
+    <Position X="15" Y="3.5" Width="2.5" />
+    <InheritanceLine Type="Ex03.GarageLogic.Vehicle" FixedFromPoint="true">
+      <Path>
+        <Point X="13.167" Y="3.852" />
+        <Point X="13.167" Y="4.045" />
+        <Point X="13.692" Y="4.045" />
+        <Point X="13.692" Y="3.308" />
+        <Point X="16.25" Y="3.308" />
+        <Point X="16.25" Y="3.5" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAIAABAAAAAAAAAAABAAAAAAgAAAAAAAAAAgAAYA=</HashCode>
+      <FileName>Car.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ex03.GarageLogic.Vehicle">
+    <Position X="11.5" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAABEAAAAAAAAAAAAAEBEAAAIAAAAIAAAAAAAgAAgA=</HashCode>
+      <FileName>Vehicle.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ex03.GarageLogic.MotorCycle">
+    <Position X="7.25" Y="3.5" Width="2.5" />
+    <InheritanceLine Type="Ex03.GarageLogic.Vehicle" FixedFromPoint="true">
+      <Path>
+        <Point X="12" Y="3.852" />
+        <Point X="12" Y="4.045" />
+        <Point X="9.942" Y="4.045" />
+        <Point X="9.942" Y="3.308" />
+        <Point X="8.5" Y="3.308" />
+        <Point X="8.5" Y="3.5" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAABAAAAAAAAAAgAJAgAAAAAGAAAAAAAAAAAAAA=</HashCode>
+      <FileName>MotorCycle.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ex03.GarageLogic.Truck">
+    <Position X="11" Y="3.5" Width="2.75" />
+    <InheritanceLine Type="Ex03.GarageLogic.Vehicle" FixedFromPoint="true">
+      <Path>
+        <Point X="12.5" Y="3.852" />
+        <Point X="12.5" Y="4.045" />
+        <Point X="13.942" Y="4.045" />
+        <Point X="13.942" Y="5.241" />
+        <Point X="13.75" Y="5.241" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AARAAAAAAAAAAAAAAAgABAAAIgAAEAAAAAEAAAAAAIA=</HashCode>
+      <FileName>Truck.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ex03.GarageLogic.FuelCar">
+    <Position X="14" Y="7" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAA=</HashCode>
+      <FileName>FuelCar.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ex03.GarageLogic.FuelEnergy">
+    <Position X="13" Y="12.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AABAAAAAAAAAAAAAAAAABAAAAAAAAAAAEAAAAAAAAAA=</HashCode>
+      <FileName>FuelEnergy.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ex03.GarageLogic.FuelMotorCycle">
+    <Position X="8.75" Y="7" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAA=</HashCode>
+      <FileName>FuelMotorCycle.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ex03.GarageLogic.ElectricCar">
+    <Position X="16.5" Y="7" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ElectricCar.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ex03.GarageLogic.ElectricEnergy">
+    <Position X="9.75" Y="12.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ElectricEnergy.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ex03.GarageLogic.ElectricMotorCycle">
+    <Position X="6.5" Y="7" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ElectricMotorCycle.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ex03.GarageLogic.VehicleEnergy">
+    <Position X="11.25" Y="9.25" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAABCAAAAAgCgAAAAAAAAAAQAA=</HashCode>
+      <FileName>VehicleEnergy.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ex03.GarageLogic.Tire">
+    <Position X="15.5" Y="9.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAACACAAgAADAAAAAIAIAAAAABAEAAAAAA=</HashCode>
+      <FileName>Tire.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ex03.GarageLogic.VehicleSetup">
+    <Position X="18" Y="9.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAEAAAASAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>VehicleSetup.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Enum Name="Ex03.GarageLogic.eCarDoors">
+    <Position X="7" Y="9.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAEAAAAAAAAAAEAAAAAAgAAAgAAAA=</HashCode>
+      <FileName>eCarDoors.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Ex03.GarageLogic.eColor">
+    <Position X="5.25" Y="9.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAGAABAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>eColor.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Ex03.GarageLogic.eFuel">
+    <Position X="5.25" Y="11.5" Width="1.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAGAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAA=</HashCode>
+      <FileName>eFuel.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Ex03.GarageLogic.eGarageOrderStatus">
+    <Position X="6.75" Y="11.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAEAAAAgAAAAAAAAAAAAAAAAAAAAAIAAAABAAAA=</HashCode>
+      <FileName>eGarageOrderStatus.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Ex03.GarageLogic.eVehicleTypes">
+    <Position X="3.5" Y="9.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAEAAAAAAAAAAEAAAAAAAAAAAAAgAAEAgAAA=</HashCode>
+      <FileName>eVehicleTypes.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Ex03.GarageLogic.eLicenseType">
+    <Position X="3.5" Y="11.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAACAAAAAAABAAAAIAEAAAA=</HashCode>
+      <FileName>eLicenseType.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

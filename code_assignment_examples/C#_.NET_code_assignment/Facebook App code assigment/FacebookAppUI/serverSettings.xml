@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<ServerSettings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <ApplicationId>628594784212234</ApplicationId>
+  <AppSettingsName>appSettings.xml</AppSettingsName>
+  <desiredFacebookPermissions>
+	<string>public_profile</string>
+    <string>user_birthday</string>
+    <string>user_friends</string>
+    <string>user_gender</string>
+    <string>user_hometown</string>
+    <string>user_likes</string>
+    <string>user_photos</string>
+    <string>user_posts</string>
+  </desiredFacebookPermissions>
+</ServerSettings>

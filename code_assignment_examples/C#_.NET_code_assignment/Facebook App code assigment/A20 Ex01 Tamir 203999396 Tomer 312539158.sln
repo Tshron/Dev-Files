@@ -1,0 +1,43 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.572
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FacebookAppUI", "FacebookAppUI\FacebookAppUI.csproj", "{2494326F-730B-4298-BFC5-DE313476118A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FacebookAppServer", "FacebookAppServer\FacebookAppServer.csproj", "{BA9F0BFD-2BF2-4786-86E0-F4B5BCCAD46B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FBUser", "FBUser\FBUser.csproj", "{0F738ACA-08FA-46E4-A67D-3E615E5D62C4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{F21D773F-BC97-4384-A094-611E32D7EC94}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\..\..\Documents\מדמח 2020\Design Patterns\Ex_01\A20 Ex01 Tamir 203999396 Tomer 312539158.docx = ..\..\..\..\Documents\מדמח 2020\Design Patterns\Ex_01\A20 Ex01 Tamir 203999396 Tomer 312539158.docx
+		Exercise Checking Report.txt = Exercise Checking Report.txt
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2494326F-730B-4298-BFC5-DE313476118A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2494326F-730B-4298-BFC5-DE313476118A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2494326F-730B-4298-BFC5-DE313476118A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2494326F-730B-4298-BFC5-DE313476118A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BA9F0BFD-2BF2-4786-86E0-F4B5BCCAD46B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA9F0BFD-2BF2-4786-86E0-F4B5BCCAD46B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BA9F0BFD-2BF2-4786-86E0-F4B5BCCAD46B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BA9F0BFD-2BF2-4786-86E0-F4B5BCCAD46B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0F738ACA-08FA-46E4-A67D-3E615E5D62C4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0F738ACA-08FA-46E4-A67D-3E615E5D62C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0F738ACA-08FA-46E4-A67D-3E615E5D62C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0F738ACA-08FA-46E4-A67D-3E615E5D62C4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F56D2EDE-6458-4112-A444-BC3D7173ECAF}
+	EndGlobalSection
+EndGlobal
