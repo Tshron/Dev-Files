@@ -1,131 +1,151 @@
-﻿using System.Drawing;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System;
+using System.IO;
+using System.Threading;
+using System.Threading.Tasks;
 using FacebookWrapper.ObjectModel;
-using FBUser;
-using Post = FacebookWrapper.ObjectModel.Post;
 
 namespace FacebookAppServer
 {
     internal sealed class ServerUtils
     {
-        private static Random s_Random = new Random();
+        internal static Random s_Random = new Random();
+        private static readonly int sr_SleepFor = 100;
+        private static string s_StartingStatus = "Start loading {0}";
+        private static string s_FinishStatus = "Loading {0} success!";
+        private static object s_lock = new object();
 
-        internal static void SetPersonalDetails(User i_User)
+        internal static void InitEntity(User i_User)
         {
-            Server.User.m_About = buildPersonalDetails(i_User);
-            Server.User.m_About.m_Cover = setCoverPhoto(Server.User.m_Album);
+            Server.LastUpdateData = i_User.UpdateTime;
+            Server.m_User = CreateUser(i_User);
         }
 
-        internal static void SetFriends(FacebookObjectCollection<User> i_Friends)
+        internal static FBUser.FBUser CreateUser(User i_User)
         {
-            List<FBUser.Post> post;
-            PersonalDetails personalDetails;
-
-            foreach (User friend in i_Friends)
+            FBUser.FBUser user = new FBUser.FBUser(i_User.Id);
+            List<Task> tasks = new List<Task>();
+            tasks.Add(Task.Run(() => 
             {
-                post = SetPosts(friend.Posts, friend.ImageNormal, friend.Name);
-                personalDetails = buildPersonalDetails(friend);
+                UpdateStatus(string.Format(s_StartingStatus, "albums"));
+                user.m_Album = AlbumUtils.SetAlbums(i_User);
+                UpdateStatus(string.Format(s_FinishStatus, "albums"));
+            }));
 
-                Server.User.m_FriendsList.Add(new Friend(personalDetails, post));
-            }
-        }
-
-        internal static List<FBUser.Post> SetPosts(FacebookObjectCollection<Post> i_Posts, Image i_UserPhoto, string i_UserName)
-        {
-            List<FBUser.Post> posts = new List<FBUser.Post>();
-            
-            foreach (Post post in i_Posts)
+            tasks.Add(Task.Run(() =>
             {
-                posts.Add(new FBUser.Post(i_UserName, post.Caption, post.Description, post.CreatedTime, randomAmountof(), randomAmountof(), i_UserPhoto, post.PictureURL));
-            }
-
-            return posts;
-        }
-
-        internal static List<FBUser.Group> SetGroups(FacebookObjectCollection<FacebookWrapper.ObjectModel.Group> i_Groups)
-        {
-            List<FBUser.Group> groups = new List<FBUser.Group>();
-            foreach (FacebookWrapper.ObjectModel.Group group in i_Groups)
-            {   
-                List<FBUser.Post> groupPosts = new List<FBUser.Post>();
-                foreach (FacebookWrapper.ObjectModel.Post groupPost in group.WallPosts)
+                UpdateStatus(string.Format(s_StartingStatus, "personal details"));
+                user.m_About = AboutUtils.BuildPersonalDetails(i_User);
+                UpdateStatus(string.Format(s_FinishStatus, "personal details"));
+            }));
+            tasks.Add(Task.Run(() =>
+            {
+                while((user.m_About == null) || (user.m_Album == null))
                 {
-                    groupPosts.Add(new FBUser.Post(groupPost.From.Name, groupPost.Caption, groupPost.Description, groupPost.CreatedTime, randomAmountof(), randomAmountof(), group.ImageSmall, groupPost.PictureURL));
+                    Thread.Sleep(sr_SleepFor);
                 }
 
-                groups.Add(new FBUser.Group(group.Name, groupPosts));
-            }
+                UpdateStatus(string.Format(s_StartingStatus, "cover photo"));
+                user.m_About.Cover = AlbumUtils.SetCoverPhoto(user.m_Album);
+                UpdateStatus(string.Format(s_FinishStatus, "cover photo"));
+            }));
+            tasks.Add(Task.Run(() =>
+            {
+                while (user.m_About == null)
+                {
+                    Thread.Sleep(sr_SleepFor);
+                }
 
-            return groups;
+                UpdateStatus(string.Format(s_StartingStatus, "post"));
+                user.m_UserPosts = PostUtils.SetPosts(i_User.Posts, i_User.ImageSmall, user.m_About.Name);
+                UpdateStatus(string.Format(s_FinishStatus, "post"));
+            }));
+            tasks.Add(Task.Run(() =>
+            {
+                UpdateStatus(string.Format(s_StartingStatus, "friends"));
+                user.m_FriendsList = FriendUtils.SetFriends(i_User.Friends);
+                UpdateStatus(string.Format(s_FinishStatus, "friends"));
+            }));
+            tasks.Add(Task.Run(() =>
+            {
+                UpdateStatus(string.Format(s_StartingStatus, "groups"));
+                user.m_UserGroups = GroupUtils.SetGroups(i_User.Groups);
+                UpdateStatus(string.Format(s_FinishStatus, "group"));
+            }));
+            tasks.Add(Task.Run(() =>
+            {
+                while ((user.m_FriendsList == null) || (user.m_UserPosts == null))
+                {
+                    Thread.Sleep(sr_SleepFor);
+                }
+
+                UpdateStatus(string.Format(s_StartingStatus, "feed"));
+                user.m_Feed = FeedUtils.BuildUserFeed(user);
+                UpdateStatus(string.Format(s_FinishStatus, "feed"));
+            }));
+            
+            Task.WaitAll(tasks.ToArray());
+            
+            return user;
         }
 
-        private static int randomAmountof()
+        internal static FBUser.FBUser CreateFriend(User i_User)
+        {
+            FBUser.FBUser user = new FBUser.FBUser(i_User.Id);
+            List<Task> tasks = new List<Task>();
+
+            tasks.Add(Task.Run(() => user.m_Album = AlbumUtils.SetAlbums(i_User)));
+            tasks.Add(Task.Run(() => user.m_About = AboutUtils.BuildPersonalDetails(i_User)));
+            tasks.Add(Task.Run(() =>
+            {
+                while ((user.m_About == null) || (user.m_Album == null))
+                {
+                    Thread.Sleep(sr_SleepFor);
+                }
+
+                user.m_About.Cover = AlbumUtils.SetCoverPhoto(user.m_Album);
+            }));
+            tasks.Add(Task.Run(() =>
+            {
+                while (user.m_About == null)
+                {
+                    Thread.Sleep(sr_SleepFor);
+                }
+
+                user.m_UserPosts = PostUtils.SetPosts(i_User.Posts, i_User.ImageSmall, user.m_About.Name);
+            }));
+
+            Task.WaitAll(tasks.ToArray());
+
+            return user;
+        }
+
+        internal static void UpdateStatus(string i_Status)
+        {
+            lock (s_lock)
+            {
+                Server.m_Status.Add(i_Status);
+            }            
+        }
+
+        internal static string BuildPath(string i_Folder, string i_Name)
+        {
+            string path;
+            if (i_Folder == null)
+            {
+                path = Path.Combine(Settings.sr_Folder, i_Name);
+            }
+            else
+            {
+                path = Path.Combine(i_Folder, i_Name);
+            }
+
+            return path;
+        }
+
+        internal static int RandomAmountOf()
         {
             return s_Random.Next(1, 50);
-        }
-
-        internal static void SetAlbums(User i_User)
-        {
-            List<FBUser.Album> fbAlbums = new List<FBUser.Album>();
-            string defaultPic = "default";
-            fbAlbums.Add(new FBUser.Album(defaultPic, "PhotosTaggedIn", "Photo of You", i_User.PhotosTaggedIn));
-
-            foreach (FacebookWrapper.ObjectModel.Album album in i_User.Albums)
-            {
-                fbAlbums.Add(new FBUser.Album(album.PictureAlbumURL, album.Description, album.Name, album.Photos));
-            }
-            
-            Server.m_User.m_Album = fbAlbums;
-            collectFriendsPhotos(defaultPic);
-        }
-
-        private static void collectFriendsPhotos(string i_AlbumPicture)
-        {
-            FBUser.Album friendsAlbum = new FBUser.Album(i_AlbumPicture, "My friends and I", "With my Friends!", null);
-
-            foreach (FBUser.Album album in Server.User.m_Album)
-            {
-                foreach (FBUser.Photo photo in album.m_Photos)
-                {
-                    foreach (string friendId in photo.m_TaggedPeopleIds)
-                    {
-                        if (AppSettings.AppSetting.FriendsToFollow.Contains(friendId))
-                        {
-                            friendsAlbum.m_Photos.Add(photo);
-                        }
-                    }
-                }
-            }
-            if(friendsAlbum.m_Photos.Count > 0)
-            {
-                Server.m_User.m_Album.Insert(0,friendsAlbum);
-            }
-            
-        }
-        private static string setCoverPhoto(List<FBUser.Album> m_Album)
-        {
-            string coverUrl = string.Empty;
-            foreach (FBUser.Album album in m_Album)
-            {
-                if (album.m_Name == "Cover Photos")
-                {
-                    coverUrl = album.m_Photos[0].m_PictureNormalURL;
-                }
-            }
-
-            return coverUrl;
-        }
-
-        private static PersonalDetails buildPersonalDetails(User i_User)
-        {
-            PersonalDetails ps = new PersonalDetails(i_User.Name, i_User.Email);
-            ps.m_Birthday = i_User.Birthday;
-            ps.m_Hometown = i_User.Hometown != null ? i_User.Hometown.Name : null;
-            ps.m_ProfileUrl = i_User.PictureLargeURL;
-            ps.m_Id = i_User.Id;
-            ps.m_ProfilePicture = i_User.ImageSmall;
-            return ps;
         }
     }
 }

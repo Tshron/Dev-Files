@@ -11,7 +11,7 @@ namespace FacebookAppServer
             {
                 XmlSerializer serializer = new XmlSerializer(typeof(T));
                 serializer.Serialize(stream, i_Type);
-            }            
+            }           
         }
 
         internal static T LoadFromFile<T>(T i_Type, string i_Path)

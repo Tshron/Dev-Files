@@ -41,6 +41,7 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -49,20 +50,41 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AboutUtils.cs" />
+    <Compile Include="AlbumUtils.cs" />
     <Compile Include="AppSettings.cs" />
     <Compile Include="Authentication.cs" />
-    <Compile Include="Feed.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="eGreetingCards.cs" />
+    <Compile Include="FeedUtils.cs" />
+    <Compile Include="FieldMessage.cs" />
+    <Compile Include="FriendUtils.cs" />
+    <Compile Include="GreetingCardHandler.cs" />
+    <Compile Include="GreetingCardsUtils.cs" />
+    <Compile Include="GroupUtils.cs" />
+    <Compile Include="LoggerUtils.cs" />
+    <Compile Include="PostUtils.cs" />
     <Compile Include="Server.cs" />
     <Compile Include="ServerSettings.cs" />
     <Compile Include="ServerUtils.cs" />
+    <Compile Include="Settings.cs" />
     <Compile Include="XmlUtils.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\EmailSender\EmailSender.csproj">
+      <Project>{5d67722f-4353-4599-afc2-8eed557df3fb}</Project>
+      <Name>EmailSender</Name>
+    </ProjectReference>
     <ProjectReference Include="..\FBUser\FBUser.csproj">
       <Project>{0f738aca-08fa-46e4-a67d-3e615e5d62c4}</Project>
       <Name>FBUser</Name>
     </ProjectReference>
+    <ProjectReference Include="..\GreetingCard\GreetingCard.csproj">
+      <Project>{1e74fee5-7d1f-4231-91ba-bb45c889743f}</Project>
+      <Name>GreetingCard</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Properties\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

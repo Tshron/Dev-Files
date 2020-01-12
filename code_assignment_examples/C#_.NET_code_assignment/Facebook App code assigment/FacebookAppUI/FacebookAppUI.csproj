@@ -54,11 +54,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="App.cs">
+    <Compile Include="AppForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="App.Designer.cs">
-      <DependentUpon>App.cs</DependentUpon>
+    <Compile Include="AppForm.Designer.cs">
+      <DependentUpon>AppForm.cs</DependentUpon>
     </Compile>
     <Compile Include="commentForm.cs">
       <SubType>Form</SubType>
@@ -66,38 +66,19 @@
     <Compile Include="commentForm.Designer.cs">
       <DependentUpon>commentForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Login.cs">
+    <Compile Include="LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Login.Designer.cs">
-      <DependentUpon>Login.cs</DependentUpon>
+    <Compile Include="LoginForm.Designer.cs">
+      <DependentUpon>LoginForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="commentForm.resx">
       <DependentUpon>commentForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Login.resx">
-      <DependentUpon>Login.cs</DependentUpon>
+    <EmbeddedResource Include="LoginForm.resx">
+      <DependentUpon>LoginForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
-    <None Include="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-    </None>
-    <Compile Include="Properties\Settings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Settings.settings</DependentUpon>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -114,8 +95,29 @@
       <Project>{0f738aca-08fa-46e4-a67d-3e615e5d62c4}</Project>
       <Name>FBUser</Name>
     </ProjectReference>
+    <ProjectReference Include="..\GreetingCard\GreetingCard.csproj">
+      <Project>{1e74fee5-7d1f-4231-91ba-bb45c889743f}</Project>
+      <Name>GreetingCard</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="img\exit.png" />
+    <Content Include="img\exitLogin.png" />
+    <Content Include="img\loadingBar\0loading.png" />
+    <Content Include="img\loadingBar\10loading.png" />
+    <Content Include="img\loadingBar\11loading.png" />
+    <Content Include="img\loadingBar\12loading.png" />
+    <Content Include="img\loadingBar\13loading.png" />
+    <Content Include="img\loadingBar\14loading.png" />
+    <Content Include="img\loadingBar\1loading.png" />
+    <Content Include="img\loadingBar\2loading.png" />
+    <Content Include="img\loadingBar\3loading.png" />
+    <Content Include="img\loadingBar\4loading.png" />
+    <Content Include="img\loadingBar\5loading.png" />
+    <Content Include="img\loadingBar\6loading.png" />
+    <Content Include="img\loadingBar\7loading.png" />
+    <Content Include="img\loadingBar\8loading.png" />
+    <Content Include="img\loadingBar\9loading.png" />
     <Content Include="img\about.png" />
     <Content Include="img\backgroundApp.png" />
     <Content Include="img\bestFriendsOff.png" />
@@ -138,6 +140,9 @@
     <Content Include="img\loginButton.png" />
     <Content Include="img\photos.png" />
     <Content Include="img\unfollow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Properties\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

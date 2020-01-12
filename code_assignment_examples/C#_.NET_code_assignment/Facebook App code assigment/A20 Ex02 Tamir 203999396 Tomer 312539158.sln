@@ -9,9 +9,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FacebookAppServer", "Facebo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FBUser", "FBUser\FBUser.csproj", "{0F738ACA-08FA-46E4-A67D-3E615E5D62C4}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{F21D773F-BC97-4384-A094-611E32D7EC94}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GreetingCard", "GreetingCard\GreetingCard.csproj", "{1E74FEE5-7D1F-4231-91BA-BB45C889743F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmailSender", "EmailSender\EmailSender.csproj", "{5D67722F-4353-4599-AFC2-8EED557DF3FB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{C372F188-12F3-4748-B8B3-D971077186F5}"
 	ProjectSection(SolutionItems) = preProject
-		..\..\..\..\Documents\מדמח 2020\Design Patterns\Ex_01\A20 Ex01 Tamir 203999396 Tomer 312539158.docx = ..\..\..\..\Documents\מדמח 2020\Design Patterns\Ex_01\A20 Ex01 Tamir 203999396 Tomer 312539158.docx
 		Exercise Checking Report.txt = Exercise Checking Report.txt
 	EndProjectSection
 EndProject
@@ -33,6 +36,14 @@ Global
 		{0F738ACA-08FA-46E4-A67D-3E615E5D62C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0F738ACA-08FA-46E4-A67D-3E615E5D62C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0F738ACA-08FA-46E4-A67D-3E615E5D62C4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1E74FEE5-7D1F-4231-91BA-BB45C889743F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1E74FEE5-7D1F-4231-91BA-BB45C889743F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1E74FEE5-7D1F-4231-91BA-BB45C889743F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1E74FEE5-7D1F-4231-91BA-BB45C889743F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5D67722F-4353-4599-AFC2-8EED557DF3FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5D67722F-4353-4599-AFC2-8EED557DF3FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5D67722F-4353-4599-AFC2-8EED557DF3FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5D67722F-4353-4599-AFC2-8EED557DF3FB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

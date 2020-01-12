@@ -8,23 +8,23 @@ namespace FBUser
     {
         private static Random random = new Random();
 
-        public string m_PictureAlbumURL { get; }
+        public string PictureAlbumURL { get; }
 
-        public List<Photo> m_Photos = new List<Photo>();
+        public List<Photo> Photos = new List<Photo>();
 
-        public string m_Description { get; }
+        public string Description { get; set; }
 
-        public string m_Name { get; set; }
+        public string Name { get; set; }
 
-        public int m_Count { get; }
-        
+        public int Count { get; }
+
         public Album(string i_PictureAlbumURL, string i_Description, string i_Name, FacebookObjectCollection<FacebookWrapper.ObjectModel.Photo> i_Photos)
         {
             AddPhotos(i_Photos);
-            m_PictureAlbumURL = i_PictureAlbumURL;
-            m_Description = i_Description;
-            m_Name = i_Name;
-            m_Count = 0;
+            PictureAlbumURL = i_PictureAlbumURL;
+            Description = i_Description;
+            Name = i_Name;
+            Count = 0;
         }
 
         public void AddPhotos(FacebookObjectCollection<FacebookWrapper.ObjectModel.Photo> i_Photos)
@@ -42,7 +42,8 @@ namespace FBUser
                             tags.Add(tag.User.Id);
                         }
                     }
-                    m_Photos.Add(new Photo(photo.PictureNormalURL, photo.Width, photo.Height, photo.Name, random.Next(0, 50), random.Next(0, 50), tags));
+
+                    Photos.Add(new Photo(photo.PictureNormalURL, photo.Width, photo.Height, photo.Name, random.Next(0, 50), random.Next(0, 50), tags));
                 }
             }
         }

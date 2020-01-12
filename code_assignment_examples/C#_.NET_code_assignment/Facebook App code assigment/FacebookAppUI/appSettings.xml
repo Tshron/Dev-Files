@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<AppSettings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <AccessToken>EAAI7tCDSFQoBAGK1QnJGcnQSiuZBJL5mjEAEZBwvYwhur2AQ1EOso3lhQZBGc4JVZBa9JIwRUcnY79R7ScrRiDb4PHwZCF7odGqtcMJ62w0qEA9ypThSdZCCWhuWbA4V5v0eSKkMOwkX2y4Cyv5LhUOrM6LXpTtHgZD</AccessToken>
-  <UserName>Tamir</UserName>
-  <UserPicture>https://graph.facebook.com/10159023261522519/picture?type=large&amp;access_token=EAAI7tCDSFQoBAGK1QnJGcnQSiuZBJL5mjEAEZBwvYwhur2AQ1EOso3lhQZBGc4JVZBa9JIwRUcnY79R7ScrRiDb4PHwZCF7odGqtcMJ62w0qEA9ypThSdZCCWhuWbA4V5v0eSKkMOwkX2y4Cyv5LhUOrM6LXpTtHgZD</UserPicture>
-  <FriendsToFollow>
-    <string>10218361972754038</string>
-  </FriendsToFollow>
-</AppSettings>

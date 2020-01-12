@@ -4,25 +4,32 @@ namespace FBUser
 {
     public class PersonalDetails
     {
-        public string m_Name { get; set; }
-        public string m_Email { get; set; }
-        public string m_Id { get; set; }
-        public string m_Birthday { get; set; }
-        public string m_Hometown { get; set; }
-        public string m_Cover { get; set; }
-        public string m_ProfileUrl { get; set; }
-        public Image m_ProfilePicture { get; set; }
+        public string Name { get; set; }
+
+        public string Email { get; set; }
+
+        public string Id { get; set; }
+
+        public string Birthday { get; set; }
+
+        public string Hometown { get; set; }
+
+        public string Cover { get; set; }
+
+        public string ProfileUrl { get; set; }
+
+        public Image ProfilePicture { get; set; }
 
         public PersonalDetails(string i_Name, string i_Email)
         {
-            m_Name = i_Name;
-            m_Email = i_Email;
-            m_Id = null;
-            m_Birthday = null;
-            m_Cover = null;
-            m_ProfileUrl = null;
-            m_ProfilePicture = null;
-            m_Hometown = null;
+            Name = i_Name;
+            Email = i_Email;
+            Id = null;
+            Birthday = null;
+            Cover = null;
+            ProfileUrl = null;
+            ProfilePicture = null;
+            Hometown = null;
         }
     }
 }

@@ -49,12 +49,13 @@
   <ItemGroup>
     <Compile Include="Album.cs" />
     <Compile Include="FBUser.cs" />
-    <Compile Include="Friend.cs" />
     <Compile Include="Group.cs" />
     <Compile Include="PersonalDetails.cs" />
     <Compile Include="Photo.cs" />
     <Compile Include="Post.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Properties\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

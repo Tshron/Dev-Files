@@ -2,10 +2,9 @@
 
 namespace FacebookAppServer
 {
-    public sealed class AppSettings
+    public sealed class AppSettings : Settings
     {
         private static readonly object sr_Lock = new object();
-        private static AppSettings s_Instance = null;
 
         public string AccessToken { get; set; }
 
@@ -15,47 +14,48 @@ namespace FacebookAppServer
 
         public List<string> FriendsToFollow { get; set; }
 
-        private AppSettings()
+        internal AppSettings()
         {
+            m_FileName = Server.m_Settings.AppSettingsName;
             AccessToken = null;
             UserName = null;
             UserPicture = null;
             FriendsToFollow = new List<string>();
+            Messages = new List<FieldMessage<string, string>>();
         }
 
-        public static AppSettings AppSetting
+        private void ErrorEventHandler()
         {
-            get
+            ErrorEventHandler(Server.AppSettings);
+        }
+        
+        public override void LoadFromFile()
+        {
+            try
             {
-                if (s_Instance == null)
-                {
-                    lock (sr_Lock)
-                    {
-                        if(s_Instance == null)
-                        {
-                            s_Instance = new AppSettings();
-                        }
-                    }
-                }
-
-                return s_Instance;
+                string path = ServerUtils.BuildPath(Server.m_Settings.AppSettingsLocation, Server.m_Settings.AppSettingsName);
+                Server.m_AppSettings = XmlUtils.LoadFromFile(this, path);
+            }
+            finally
+            {
+                ErrorEventHandler();
             }
         }
-        
-        
-        public static void SaveToFile()
-        {
-            string path = Server.BuildPath(ServerSettings.ServerSetting.AppSettingsLocation, ServerSettings.ServerSetting.AppSettingsName);
-            s_Instance.UserName = Server.User.m_About.m_Name.Split(' ')[0];
-            s_Instance.UserPicture = Server.User.m_About.m_ProfileUrl;
-            s_Instance.FriendsToFollow = Server.User.SaveTrackingOnFriends();
-            Server.SaveToFile(s_Instance, path);
-        }
 
-        public static void LoadFromFile()
+        public override void SaveToFile()
         {
-            string path = Server.BuildPath(ServerSettings.ServerSetting.AppSettingsLocation, ServerSettings.ServerSetting.AppSettingsName);
-            s_Instance = Server.LoadFromFile(AppSetting, path);
+            try
+            {
+                string path = ServerUtils.BuildPath(Server.m_Settings.AppSettingsLocation, Server.m_Settings.AppSettingsName);
+                Server.m_AppSettings.UserName = Server.User.m_About.Name.Split(' ')[0];
+                Server.m_AppSettings.UserPicture = Server.User.m_About.ProfileUrl;
+                Server.m_AppSettings.FriendsToFollow = Server.User.SaveTrackingOnFriends();
+                XmlUtils.SaveToFile(Server.AppSettings, path);
+            }
+            finally
+            {
+                ErrorEventHandler();
+            }
         }
     }
 }

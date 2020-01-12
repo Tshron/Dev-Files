@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using GreetingCard;
 using FBUser;
 
 namespace FacebookAppUI
@@ -17,7 +19,7 @@ namespace FacebookAppUI
         { 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Login());
+            Application.Run(new LoginForm());
         }
     }
 }

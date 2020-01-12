@@ -40,6 +40,7 @@ namespace FacebookAppUI
             // 
             this.pleaseType.AutoSize = true;
             this.pleaseType.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.pleaseType.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.pleaseType.Location = new System.Drawing.Point(154, 32);
             this.pleaseType.Name = "pleaseType";
             this.pleaseType.Size = new System.Drawing.Size(221, 24);
@@ -71,14 +72,14 @@ namespace FacebookAppUI
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(564, 290);
-            this.StartPosition = FormStartPosition.CenterParent;
-            this.MaximizeBox = false;
-            this.MinimizeBox = false;
             this.Controls.Add(this.Send);
             this.Controls.Add(this.commentBox);
             this.Controls.Add(this.pleaseType);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "commentForm";
-            this.SizeGripStyle = SizeGripStyle.Hide;
+            this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.ResumeLayout(false);
             this.PerformLayout();
 

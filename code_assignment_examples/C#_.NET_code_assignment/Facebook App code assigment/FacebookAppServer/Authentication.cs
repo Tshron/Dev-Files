@@ -5,12 +5,12 @@ namespace FacebookAppServer
 {
     internal class Authentication
     {
-        internal static LoginResult checkPermissions()
+        internal static LoginResult Login()
         {
             LoginResult result = new LoginResult();
             try
             {
-                result = FacebookService.Login(ServerSettings.ServerSetting.ApplicationId, ServerSettings.ServerSetting.desiredFacebookPermissions);
+                result = FacebookService.Login(Server.m_Settings.ApplicationId, Server.m_Settings.desiredFacebookPermissions);
             }
             catch(Exception ex)
             {
