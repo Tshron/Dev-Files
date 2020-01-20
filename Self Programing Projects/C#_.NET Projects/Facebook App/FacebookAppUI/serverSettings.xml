@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<ServerSettings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <m_Messages>
+    <FieldMessage>
+      <Key>AppSettingsName</Key>
+      <Value>'AppSettingsName' field missing in serverSettings.xml
+Please add: '&lt;AppSettingsName&gt;[file_name].xml&lt;/AppSettingsName&gt;' for serverSettings.xml file.
+You can change AppSettings's directory by add: '&lt;AppSettingsLocation&gt;[Directory]&lt;/AppSettingsLocation&gt;'</Value>
+    </FieldMessage>
+  </m_Messages>
+  <ApplicationId>628594784212234</ApplicationId>
+  <AppSettingsName>appSettings.xml</AppSettingsName>
+  <desiredFacebookPermissions>
+    <string>public_profile</string>
+    <string>user_birthday</string>
+    <string>user_friends</string>
+    <string>user_gender</string>
+    <string>user_hometown</string>
+    <string>user_likes</string>
+    <string>user_photos</string>
+    <string>user_posts</string>
+  </desiredFacebookPermissions>
+</ServerSettings>
