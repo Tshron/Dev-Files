@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{2494326F-730B-4298-BFC5-DE313476118A}</ProjectGuid>
+    <ProjectGuid>{6846DAE9-C326-4D91-A9CE-49DC14E62AAD}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>FacebookAppUI</RootNamespace>
     <AssemblyName>FacebookAppUI</AssemblyName>
@@ -32,38 +32,23 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Facebook, Version=6.0.10.0, Culture=neutral, PublicKeyToken=58cb4f2111d1e6de, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\Documents\מדמח 2020\Design Patterns\01_FB01_BasicFacebookFeatures.V6.8.0.18\01_FB01_BasicFacebookFeatures.V6.8.0.18\FBApi\Facebook.dll</HintPath>
-    </Reference>
-    <Reference Include="FbGraphApiWrapper, Version=6.8.0.18, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\Documents\מדמח 2020\Design Patterns\01_FB01_BasicFacebookFeatures.V6.8.0.18\01_FB01_BasicFacebookFeatures.V6.8.0.18\FBApi\FbGraphApiWrapper.dll</HintPath>
-    </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Deployment" />
-    <Reference Include="System.Drawing" />
-    <Reference Include="System.Net.Http" />
-    <Reference Include="System.Windows.Forms" />
-    <Reference Include="System.Xml" />
+    <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AppForm.Designer.cs">
+    <Compile Include="AppForm.designer.cs">
       <DependentUpon>AppForm.cs</DependentUpon>
     </Compile>
     <Compile Include="commentForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="commentForm.Designer.cs">
+    <Compile Include="commentForm.designer.cs">
       <DependentUpon>commentForm.cs</DependentUpon>
     </Compile>
     <Compile Include="LoginForm.cs">
@@ -73,36 +58,42 @@
       <DependentUpon>LoginForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
+  </ItemGroup>
+  <ItemGroup>
     <EmbeddedResource Include="commentForm.resx">
       <DependentUpon>commentForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <WCFMetadata Include="Connected Services\" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\FacebookAppServer\FacebookAppServer.csproj">
-      <Project>{ba9f0bfd-2bf2-4786-86e0-f4b5bccad46b}</Project>
-      <Name>FacebookAppServer</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\FBUser\FBUser.csproj">
-      <Project>{0f738aca-08fa-46e4-a67d-3e615e5d62c4}</Project>
-      <Name>FBUser</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\GreetingCard\GreetingCard.csproj">
-      <Project>{1e74fee5-7d1f-4231-91ba-bb45c889743f}</Project>
-      <Name>GreetingCard</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="img\exit.png" />
-    <Content Include="img\exitLogin.png" />
+    <Content Include="img\feed\loadMoreResults.png" />
+    <Content Include="img\menu\about.png" />
+    <Content Include="img\about\aboutIcon1.png" />
+    <Content Include="img\about\aboutIcon2.png" />
+    <Content Include="img\about\aboutIcon3.png" />
+    <Content Include="img\about\aboutIcon4.png" />
+    <Content Include="img\about\aboutIcon5.png" />
+    <Content Include="img\backgroundApp.png" />
+    <Content Include="img\feed\comment.png" />
+    <Content Include="img\emptyPhoto.png" />
+    <Content Include="img\menu\exit.png" />
+    <Content Include="img\login\exitLogin.png" />
+    <Content Include="img\login\FacebookLoginBackground.png" />
+    <Content Include="img\panelBar\CommentCommandDown.png" />
+    <Content Include="img\panelBar\CommentCommandOff.png" />
+    <Content Include="img\panelBar\CommentCommandUp.png" />
+    <Content Include="img\panelBar\FemaleCommandOff.png" />
+    <Content Include="img\panelBar\FemaleCommandOn.png" />
+    <Content Include="img\panelBar\filterPanel.png" />
+    <Content Include="img\friend\follow.png" />
+    <Content Include="img\menu\friends.png" />
+    <Content Include="img\menu\home.png" />
+    <Content Include="img\feed\likeButton.png" />
+    <Content Include="img\feed\LikeCommenton.png" />
     <Content Include="img\loadingBar\0loading.png" />
     <Content Include="img\loadingBar\10loading.png" />
     <Content Include="img\loadingBar\11loading.png" />
@@ -118,31 +109,52 @@
     <Content Include="img\loadingBar\7loading.png" />
     <Content Include="img\loadingBar\8loading.png" />
     <Content Include="img\loadingBar\9loading.png" />
-    <Content Include="img\about.png" />
-    <Content Include="img\backgroundApp.png" />
-    <Content Include="img\bestFriendsOff.png" />
-    <Content Include="img\bestFriendsOn.png" />
-    <Content Include="img\comment.png" />
-    <Content Include="img\emptyPhoto.png" />
-    <Content Include="img\FacebookLoginBackground.png" />
-    <Content Include="img\filterPanel.png" />
-    <Content Include="img\follow.png" />
-    <Content Include="img\friends.png" />
-    <Content Include="img\home.png" />
-    <Content Include="img\likeButton.png" />
-    <Content Include="img\LikeCommenton.png" />
-    <Content Include="img\likeOff.png" />
-    <Content Include="img\likeOn.png" />
-    <Content Include="img\loading.png" />
-    <Content Include="img\login.png" />
-    <Content Include="img\loginas.png" />
-    <Content Include="img\loginashover.png" />
-    <Content Include="img\loginButton.png" />
-    <Content Include="img\photos.png" />
-    <Content Include="img\unfollow.png" />
+    <Content Include="img\login\login.png" />
+    <Content Include="img\login\loginas.png" />
+    <Content Include="img\login\loginhover.png" />
+    <Content Include="img\menu\photos.png" />
+    <Content Include="img\friend\unfollow.png" />
+    <Content Include="img\panelBar\FriendCommandOff.png" />
+    <Content Include="img\panelBar\FriendCommandOn.png" />
+    <Content Include="img\panelBar\LastDaysCommandOff.png" />
+    <Content Include="img\panelBar\LastDaysCommandOn.png" />
+    <Content Include="img\panelBar\LikeCommandDown.png" />
+    <Content Include="img\panelBar\LikeCommandOff.png" />
+    <Content Include="img\panelBar\LikeCommandUp.png" />
+    <Content Include="img\panelBar\PostLengthCommandDown.png" />
+    <Content Include="img\panelBar\PostLengthCommandOff.png" />
+    <Content Include="img\panelBar\PostLengthCommandUp.png" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Properties\" />
+    <Reference Include="Facebook">
+      <HintPath>..\..\..\..\..\..\מדמח 2020\Design Patterns\01_FB01_BasicFacebookFeatures.V6.8.0.18\01_FB01_BasicFacebookFeatures.V6.8.0.18\FBApi\Facebook.dll</HintPath>
+    </Reference>
+    <Reference Include="FbGraphApiWrapper, Version=6.8.0.18, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\מדמח 2020\Design Patterns\01_FB01_BasicFacebookFeatures.V6.8.0.18\01_FB01_BasicFacebookFeatures.V6.8.0.18\FBApi\FbGraphApiWrapper.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FacebookAppServer\FacebookAppServer.csproj">
+      <Project>{f7f670e3-62d5-4f3b-9505-3840708fc034}</Project>
+      <Name>FacebookAppServer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FBUser\FBUser.csproj">
+      <Project>{026c7a53-53aa-436b-9fb8-3d3385396148}</Project>
+      <Name>FBUser</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GreetingCard\GreetingCard.csproj">
+      <Project>{c3bf9f53-0006-4e02-a4ca-03280e56dd3b}</Project>
+      <Name>GreetingCard</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PanelBar\PanelBar.csproj">
+      <Project>{5239b666-6b1f-4b06-a073-66b4caf7168b}</Project>
+      <Name>PanelBar</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,0 +1,7 @@
+C:\Users\tshro\Documents\GitHub\Dev-Files\Self Programing Projects\C#_.NET Projects\Facebook App\GreetingCard\bin\Debug\GreetingCard.dll.config
+C:\Users\tshro\Documents\GitHub\Dev-Files\Self Programing Projects\C#_.NET Projects\Facebook App\GreetingCard\bin\Debug\GreetingCard.dll
+C:\Users\tshro\Documents\GitHub\Dev-Files\Self Programing Projects\C#_.NET Projects\Facebook App\GreetingCard\bin\Debug\GreetingCard.pdb
+C:\Users\tshro\Documents\GitHub\Dev-Files\Self Programing Projects\C#_.NET Projects\Facebook App\GreetingCard\obj\Debug\GreetingCard.csprojAssemblyReference.cache
+C:\Users\tshro\Documents\GitHub\Dev-Files\Self Programing Projects\C#_.NET Projects\Facebook App\GreetingCard\obj\Debug\GreetingCard.csproj.CoreCompileInputs.cache
+C:\Users\tshro\Documents\GitHub\Dev-Files\Self Programing Projects\C#_.NET Projects\Facebook App\GreetingCard\obj\Debug\GreetingCard.dll
+C:\Users\tshro\Documents\GitHub\Dev-Files\Self Programing Projects\C#_.NET Projects\Facebook App\GreetingCard\obj\Debug\GreetingCard.pdb

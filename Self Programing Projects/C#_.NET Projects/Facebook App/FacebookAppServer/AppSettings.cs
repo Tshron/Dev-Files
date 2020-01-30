@@ -24,7 +24,7 @@ namespace FacebookAppServer
             Messages = new List<FieldMessage<string, string>>();
         }
 
-        private void ErrorEventHandler()
+        private void errorEventHandler()
         {
             ErrorEventHandler(Server.AppSettings);
         }
@@ -38,7 +38,7 @@ namespace FacebookAppServer
             }
             finally
             {
-                ErrorEventHandler();
+                errorEventHandler();
             }
         }
 
@@ -54,7 +54,7 @@ namespace FacebookAppServer
             }
             finally
             {
-                ErrorEventHandler();
+                errorEventHandler();
             }
         }
     }

@@ -1,14 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
 using System.Windows.Forms;
 using FBUser;
-using GreetingCard;
 
 namespace FacebookAppServer
 {
-     internal class GreetingCardsUtils
+    internal class GreetingCardsUtils
      {
          internal static string GetFriendshipLength(FBUser.FBUser i_FriendToSend)
         {
@@ -37,12 +35,12 @@ namespace FacebookAppServer
 
         internal static List<string> GetUserAndFriendsNames(FBUser.FBUser i_FriendToSend)
         {
-            return new List<string>(){i_FriendToSend.m_About.Name, Server.m_User.m_About.Name};
+            return new List<string>() { i_FriendToSend.m_About.Name, Server.m_User.m_About.Name };
         }
 
         internal static List<Image> GetUserAndFriendPhotos(FBUser.FBUser i_FriendToSend)
         {
-            return new List<Image>() {i_FriendToSend.m_About.ProfilePicture, Server.m_User.m_About.ProfilePicture };
+            return new List<Image>() { i_FriendToSend.m_About.ProfilePicture, Server.m_User.m_About.ProfilePicture };
         }
 
         internal static string GetFriendAge(FBUser.FBUser i_Friend)
@@ -59,18 +57,6 @@ namespace FacebookAppServer
             }
 
             return age;
-        }
-
-        internal static void SendCardByEmail(Form i_CardToSend, string i_FriendEmailAddress)
-        {
-            string path = "../../tempImage.bmp";
-            using(Bitmap bmp = new Bitmap(i_CardToSend.Width, i_CardToSend.Height))
-            {
-                i_CardToSend.DrawToBitmap(bmp, new Rectangle(0,0, i_CardToSend.Width, i_CardToSend.Height));
-                bmp.Save(path);
-                EmailSender.EmailSender sender = new EmailSender.EmailSender(Server.m_User.m_About.Email, i_FriendEmailAddress);
-                sender.SendEmail("I maid this for you", path);
-            }
         }
 
         internal static Form GetGreetingCard(string i_Name, FBUser.FBUser i_Friend)

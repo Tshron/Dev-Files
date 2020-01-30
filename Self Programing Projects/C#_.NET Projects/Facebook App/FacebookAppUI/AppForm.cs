@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
@@ -10,12 +11,15 @@ namespace FacebookAppUI
     public partial class AppForm : Form
     {
         private Size dataFrame = new Size(615, 610);
+        private IEnumerator<IEnumerator<Post>> feedEnumerator;
+        private int postCounter;
 
         public AppForm()
         {
             Server.User.StartTrackingOnFriends(Server.AppSettings.FriendsToFollow);
             InitializeComponent();
-            displayFeed(Server.User.m_Feed);
+            panelBar = new PanelBar.PanelBar(Server.User.m_Feed);
+            DisplayFeed();
         }
 
         protected override void OnFormClosing(FormClosingEventArgs e)
@@ -62,10 +66,9 @@ namespace FacebookAppUI
 
             buildPhotos(Server.User.m_Album[albumId], albumId);
         }
+
         private void changeText_Click(object sender, EventArgs e)
         {
-            if(((sender as Label).Tag == newText.Tag) || (newText.Tag == null))
-            {
                 label = sender as Label;
                 label.Hide();
                 newText.Show();
@@ -78,7 +81,6 @@ namespace FacebookAppUI
                 newText.MouseDoubleClick += updateTitle_Event;
                 this.Controls.Add(newText);
                 newText.BringToFront();
-            }
         }
 
         private void updateTitle_Event(object sender, EventArgs e)
@@ -107,7 +109,6 @@ namespace FacebookAppUI
             this.Controls.Add(label);
             label.BringToFront();
             label.Show();
-            newText.Tag = null;
         }
 
         private void showPhoto_Click(object sender, MouseEventArgs e)
@@ -124,7 +125,7 @@ namespace FacebookAppUI
         private void favoriteFriend_Click(object sender, MouseEventArgs e)
         {
             int idFriend = int.Parse((sender as PictureBox).Name);
-            Server.User.m_FriendsList[idFriend].Follow = !Server.User.m_FriendsList[idFriend].Follow;
+            Server.User.ChangeFriendStatus(idFriend);
             buildFriendsList();
         }
 
@@ -138,24 +139,13 @@ namespace FacebookAppUI
         {
             this.Controls.Remove(filterBarControl);
             this.Controls.Remove(outerPanel);
-            Server.SetFilterBarStatus("None");
-            displayFeed(Server.User.m_Feed);
+            DisplayFeed();
         }
 
         private void openAbout_Click(object sender, MouseEventArgs e)
         {
             hideAllControls();
             showAbout();
-        }
-
-        private void filterByLike_MouseClick(object sender, MouseEventArgs e)
-        {
-            setFilterBarState(sender as PictureBox);
-        }
-
-        private void filterByFriend_MouseClick(object sender, MouseEventArgs e)
-        {
-            setFilterBarState(sender as PictureBox);
         }
 
         private void userReactToPost(Button i_RelevantButton, bool i_Like)
@@ -166,18 +156,18 @@ namespace FacebookAppUI
             
             if(i_Like)
             {
-                Server.NotifyAboutLike((i_RelevantButton.Parent.Tag as Tuple<Post, string, Image>).Item1);
+                Server.ActOnLike((i_RelevantButton.Parent.Tag as Post));
             }
             else
             {
                 if (enableCommentOnPost())
                 {
-                    Server.NotifyAboutComment((i_RelevantButton.Parent.Tag as Tuple<Post, string, Image>).Item1);
+                    Server.NotifyAboutComment(i_RelevantButton.Parent.Tag as Post);
                 }
             } 
             
             outerPanel.Controls.Remove(outerPanel.Controls.Find("postPanel" + serialNumOfPost, false).First());
-            buildPostCard(Server.GetPost((i_RelevantButton.Parent.Tag as Tuple<Post, string, Image>).Item1.PostId), serialNumOfPost);
+            buildPostCard(Server.GetPost((i_RelevantButton.Parent.Tag as Post).PostId), serialNumOfPost);
         }
 
         private bool enableCommentOnPost()
@@ -204,52 +194,16 @@ namespace FacebookAppUI
             return new Point(i_XCoordinate, neighbor.Location.Y + neighbor.Size.Height + i_SpaceBetween);
         }
 
-        private void setFilterBarState(PictureBox i_FilterMode)
+        private void loadMorePosts()
         {
-            if ((bool)i_FilterMode.Tag)
-            {
-                openFeed();
-            }
-            else
-            {
-                string filterToActivate = i_FilterMode.Name;
-                if (filterToActivate.Equals("likeFilter"))
-                {
-                    sortFeedByLike();
-                }
-                else
-                {
-                    sortFeedByFriends();
-                }
-            }
+            outerPanel.Controls.Remove(outerPanel.Controls.Find("loadMore", false).First());
+            BuildTrio();
         }
 
         private void displayCard(PictureBox i_CardPictureBox)
         {
             Form card = Server.GetGreetingCard(i_CardPictureBox.Name, i_CardPictureBox.Tag as FBUser.FBUser);
-            addSendEmailButton(card);
             card.ShowDialog();
-            if(card.DialogResult == DialogResult.OK)
-            {
-                Server.SendCardByMail(card, i_CardPictureBox.Tag as FBUser.FBUser);
-            }
-        }
-
-        private void addSendEmailButton(Form card)
-        {
-            Button emailButton = new Button();
-            emailButton.Text = "Send By Email";
-            emailButton.Size = new Size(100,50);
-            emailButton.Location = new Point(0, 512);
-            emailButton.Click += emailButton_Click;
-            card.Controls.Add(emailButton);
-        }
-
-        private void emailButton_Click(object sender, EventArgs e)
-        {
-            Form greetingCard = (Form)(sender as Button).TopLevelControl;
-            greetingCard.DialogResult = DialogResult.OK;
-            greetingCard.Close();
         }
 
         private void hideAllControls()

@@ -1,0 +1,16 @@
+C:\Users\tshro\Documents\GitHub\Dev-Files\Self Programing Projects\C#_.NET Projects\Facebook App\FacebookAppServer\bin\Debug\FacebookAppServer.dll.config
+C:\Users\tshro\Documents\GitHub\Dev-Files\Self Programing Projects\C#_.NET Projects\Facebook App\FacebookAppServer\bin\Debug\FacebookAppServer.dll
+C:\Users\tshro\Documents\GitHub\Dev-Files\Self Programing Projects\C#_.NET Projects\Facebook App\FacebookAppServer\bin\Debug\FacebookAppServer.pdb
+C:\Users\tshro\Documents\GitHub\Dev-Files\Self Programing Projects\C#_.NET Projects\Facebook App\FacebookAppServer\bin\Debug\Facebook.dll
+C:\Users\tshro\Documents\GitHub\Dev-Files\Self Programing Projects\C#_.NET Projects\Facebook App\FacebookAppServer\bin\Debug\FbGraphApiWrapper.dll
+C:\Users\tshro\Documents\GitHub\Dev-Files\Self Programing Projects\C#_.NET Projects\Facebook App\FacebookAppServer\bin\Debug\FBUser.dll
+C:\Users\tshro\Documents\GitHub\Dev-Files\Self Programing Projects\C#_.NET Projects\Facebook App\FacebookAppServer\bin\Debug\GreetingCard.dll
+C:\Users\tshro\Documents\GitHub\Dev-Files\Self Programing Projects\C#_.NET Projects\Facebook App\FacebookAppServer\bin\Debug\FBUser.pdb
+C:\Users\tshro\Documents\GitHub\Dev-Files\Self Programing Projects\C#_.NET Projects\Facebook App\FacebookAppServer\bin\Debug\FBUser.dll.config
+C:\Users\tshro\Documents\GitHub\Dev-Files\Self Programing Projects\C#_.NET Projects\Facebook App\FacebookAppServer\bin\Debug\GreetingCard.pdb
+C:\Users\tshro\Documents\GitHub\Dev-Files\Self Programing Projects\C#_.NET Projects\Facebook App\FacebookAppServer\bin\Debug\GreetingCard.dll.config
+C:\Users\tshro\Documents\GitHub\Dev-Files\Self Programing Projects\C#_.NET Projects\Facebook App\FacebookAppServer\obj\Debug\FacebookAppServer.csprojAssemblyReference.cache
+C:\Users\tshro\Documents\GitHub\Dev-Files\Self Programing Projects\C#_.NET Projects\Facebook App\FacebookAppServer\obj\Debug\FacebookAppServer.csproj.CoreCompileInputs.cache
+C:\Users\tshro\Documents\GitHub\Dev-Files\Self Programing Projects\C#_.NET Projects\Facebook App\FacebookAppServer\obj\Debug\FacebookAppServer.csproj.CopyComplete
+C:\Users\tshro\Documents\GitHub\Dev-Files\Self Programing Projects\C#_.NET Projects\Facebook App\FacebookAppServer\obj\Debug\FacebookAppServer.dll
+C:\Users\tshro\Documents\GitHub\Dev-Files\Self Programing Projects\C#_.NET Projects\Facebook App\FacebookAppServer\obj\Debug\FacebookAppServer.pdb

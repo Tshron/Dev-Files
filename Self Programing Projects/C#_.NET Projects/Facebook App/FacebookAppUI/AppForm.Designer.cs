@@ -1,26 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Drawing;
-using System.Linq;
-using System.Net;
 using System.Windows.Forms;
 using FacebookAppServer;
 using FBUser;
+using PanelBar;
 
 namespace FacebookAppUI
 {
     public partial class AppForm
     {
-        /// <summary>
-        /// Required designer variable.
-        /// </summary>
         private System.ComponentModel.IContainer components = null;
-
-        /// <summary>
-        /// Clean up any resources being used.
-        /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -44,8 +35,8 @@ namespace FacebookAppUI
         private Button commentButton;
         private TableLayoutPanel aboutInnerPanel;
         private Label albumTitle;
-        private Label albumDescription;
-        
+        private PanelBar.PanelBar panelBar;
+
         #region Windows Form Designer generated code
 
         private void InitializeComponent()
@@ -84,11 +75,11 @@ namespace FacebookAppUI
         }
         private void displayMenuButtons()
         {
-            addMenuButtons(50, 260, "../../img/home.png", openFeed_Click);
-            addMenuButtons(50, 320, "../../img/about.png", openAbout_Click);
-            addMenuButtons(50, 380, "../../img/friends.png", openFriends_Click);
-            addMenuButtons(50, 440, "../../img/photos.png", showAlbums_Click);
-            addMenuButtons(50, 500, "../../img/exit.png", exitButton_MouseClick);
+            addMenuButtons(50, 260, "../../img/menu/home.png", openFeed_Click);
+            addMenuButtons(50, 320, "../../img/menu/about.png", openAbout_Click);
+            addMenuButtons(50, 380, "../../img/menu/friends.png", openFriends_Click);
+            addMenuButtons(50, 440, "../../img/menu/photos.png", showAlbums_Click);
+            addMenuButtons(50, 500, "../../img/menu/exit.png", exitButton_MouseClick);
         }
         private void exitButton_MouseClick(object sender, MouseEventArgs e)
         {
@@ -144,23 +135,55 @@ namespace FacebookAppUI
         #endregion
 
         #region Feed
-        public void displayFeed(List<Tuple<Post, string, Image>> i_FeedPostsCollection)
+        public void displayFeedForm()
         {
-            this.Controls.Add(displayFilterBar(Server.GetFilterBarStatus()));
             buildOuterFeedPanel();
-            int counter = 0;
-            foreach (Tuple<Post, string, Image> post in i_FeedPostsCollection)
+            postCounter = 0;
+            feedEnumerator = panelBar.CurrentFeed.GetFeedDisplayModeEnumerator();
+            if(feedEnumerator.MoveNext())
             {
-                if(string.IsNullOrEmpty(post.Item1.PostContent))
-                {
-                    continue;
-                }
-
-                innerPanel = buildPostCard(post, counter);
-                counter++;
+                BuildTrio();
             }
 
             outerPanel.BringToFront();
+        }
+
+        private void BuildTrio()
+        {
+            IEnumerator<Post> trioEnumerator = feedEnumerator.Current;
+            while (trioEnumerator.MoveNext())
+            {
+                innerPanel = buildPostCard(trioEnumerator.Current, postCounter);
+                postCounter++;
+            }
+
+            if(feedEnumerator.MoveNext())
+            {
+                addLoadMoreButton(--postCounter);
+                postCounter++;
+            }
+        }
+
+        private void addLoadMoreButton(int i_IndexOfLastPost)
+        {
+            Button loadMoreButton = new Button();
+            loadMoreButton.Name = "loadMore";
+            loadMoreButton.Size = new Size(100, 25);
+            outerPanel.Controls.Add(loadMoreButton);
+            loadMoreButton.Location = setLocation(loadMoreButton, "postPanel" + i_IndexOfLastPost , 250, 20);
+            loadMoreButton.Text = "Load More";
+            loadMoreButton.MouseClick += loadMoreButton_MouseClick;
+        }
+
+        private void loadMoreButton_MouseClick(object sender, MouseEventArgs e)
+        {
+            loadMorePosts();
+        }
+
+        public void DisplayFeed()
+        {
+            this.Controls.Add(displayFilterBar());
+            displayFeedForm();
         }
 
         private void buildOuterFeedPanel()
@@ -175,67 +198,73 @@ namespace FacebookAppUI
             this.Controls.Add(outerPanel);
         }
 
-        private Control displayFilterBar(Tuple<bool, bool> i_FilterCondition)
+        private Control displayFilterBar()
         {
             filterBarControl = new Control();
             filterBarControl.Size = new Size(640, 30);
             filterBarControl.Location = new Point(300, 0);
             filterBarControl.BackColor = Color.White;
-
+            
             picture = new PictureBox();
-            picture.ImageLocation = "../../img/filterPanel.png";
+            picture.ImageLocation = "../../img/panelBar/filterPanel.png";
             picture.Size = new Size(600, 30);
             picture.BackgroundImageLayout = ImageLayout.Zoom;
             picture.Location = new Point(0, 0);
             filterBarControl.Controls.Add(picture);
             
-            picture = new PictureBox();
-            picture.Name = "likeFilter";
-            picture.ImageLocation = i_FilterCondition.Item1 ? "../../img/likeOn.png" : "../../img/likeOff.png";
-            picture.Size = new Size(75, 30);
-            picture.Location = new Point(95, 0);
-            picture.Tag = i_FilterCondition.Item1;
-            picture.MouseClick += filterByLike_MouseClick;
-            filterBarControl.Controls.Add(picture);
-            picture.BringToFront();
-            
-            picture = new PictureBox();
-            picture.Name = "friendFilter";
-            picture.ImageLocation = i_FilterCondition.Item2 ? "../../img/bestFriendsOn.png" : "../../img/bestFriendsOff.png";
-            picture.Size = new Size(75, 30);
-            picture.Tag = i_FilterCondition.Item2;
-            picture.Location = new Point(175, 0);
-            picture.MouseClick += filterByFriend_MouseClick;
-            filterBarControl.Controls.Add(picture);
-            picture.BringToFront();
+            int count = 0;
+            List<Func<Feed, Feed>> PanelControls = new List<Func<Feed, Feed>>();
+            foreach (IControlButton<Feed> button in panelBar.ControlButtons)
+            {
+                picture = new PictureBox();
+                picture.Name = string.Format("{0}:Off", button.Command.Title);
+                picture.ImageLocation = string.Format("../../img/panelBar/{0}Off.png", button.Command.Title);
+                picture.Size = new Size(75, 30);
+                picture.Location = new Point(5 + count * 80, 0);
+                picture.MouseClick += ControlButton_Click;
+                filterBarControl.Controls.Add(picture);
+                picture.BringToFront();
+                count++;
+            }
 
             return filterBarControl;
         }
+        
+        private void ControlButton_Click(object sender, MouseEventArgs e)
+        {
+            picture = sender as PictureBox;
+            IControlButton<Feed> controlButton = panelBar.ForwardStep(picture.Name.Split(':')[0]);
+            string commandName = controlButton.Command.Title;
+            picture.ImageLocation = string.Format("../../img/panelBar/{0}{1}.png", commandName, controlButton.Status);
+            picture.Name = string.Format("{0}:{1}", commandName, controlButton.Status);
 
-        private Panel buildPostCard(Tuple<Post, string, Image> i_PostToBuild, int i_Counter)
+            displayFeedForm();
+        }
+
+        private Panel buildPostCard(Post i_PostToBuild, int i_Counter)
         {
             buildInnerPanel(i_PostToBuild, i_Counter);
             
             buildNameLabel(i_PostToBuild, i_Counter);
             
-            buildTimeLabel(i_PostToBuild.Item1, i_Counter);
+            buildTimeLabel(i_PostToBuild, i_Counter);
             
-            buildPostAuthorPicture(i_PostToBuild.Item1, i_Counter);
+            buildPostAuthorPicture(i_PostToBuild, i_Counter);
 
-            buildContentBox(i_PostToBuild.Item1, i_Counter);
+            buildContentBox(i_PostToBuild, i_Counter);
 
-            buildContentPicture(i_PostToBuild.Item1, i_Counter);
+            buildContentPicture(i_PostToBuild, i_Counter);
 
-            buildAmountsLabel(i_PostToBuild.Item1, i_Counter);
+            buildAmountsLabel(i_PostToBuild, i_Counter);
 
-            buildLikeButton(i_PostToBuild.Item1, i_Counter);
+            buildLikeButton(i_PostToBuild, i_Counter);
 
-            buildCommentButton(i_PostToBuild.Item1, i_Counter);
+            buildCommentButton(i_PostToBuild, i_Counter);
             
             return innerPanel;
         }
 
-        private void buildInnerPanel(Tuple<Post, string, Image> i_PostToBuild, int i_Counter)
+        private void buildInnerPanel(Post i_PostToBuild, int i_Counter)
         {
             innerPanel = new Panel();
             innerPanel.BackColor = Color.White;
@@ -250,7 +279,7 @@ namespace FacebookAppUI
                                       : setLocation(innerPanel, "postPanel" + (i_Counter - 1), 70, 5);
         }
 
-        private void buildNameLabel(Tuple<Post, string, Image> i_PostToBuild, int i_Counter)
+        private void buildNameLabel(Post i_PostToBuild, int i_Counter)
         {
             label = new Label();
             label.Anchor = System.Windows.Forms.AnchorStyles.Top;
@@ -266,7 +295,7 @@ namespace FacebookAppUI
             label.Name = "nameLabel";
             label.AutoSize = true;
             label.TabIndex = 2;
-            label.Text = i_PostToBuild.Item2;
+            label.Text = i_PostToBuild.Author.m_About.Name;
             innerPanel.Controls.Add(label);
         }
 
@@ -285,7 +314,7 @@ namespace FacebookAppUI
             label.AutoSize = true;
             label.TabIndex = 3;
             string date = string.Empty;
-            TimeSpan timeSincePost = DateTime.Now.Subtract(i_Post.PostCreateTime.Value);
+            TimeSpan timeSincePost = DateTime.Now.Subtract(i_Post.PostCreateTime);
             if (timeSincePost.Days > 0)
             {
                 if (timeSincePost.Days > 365)
@@ -331,7 +360,8 @@ namespace FacebookAppUI
             picture.Size = new System.Drawing.Size(435, 170);
             picture.Name = "postPicture";
             picture.ImageLocation = i_Post.PostContentImageUrl;
-            picture.SizeMode = PictureBoxSizeMode.StretchImage;
+            picture.BackColor = Color.FromArgb(246,246,246);
+            picture.SizeMode = PictureBoxSizeMode.Zoom;
             innerPanel.Controls.Add(picture);
             picture.Location = setLocation(picture, "contentBox", 7, 5);
         }
@@ -363,12 +393,12 @@ namespace FacebookAppUI
         private void buildCommentButton(Post i_Post, int i_Counter)
         {
             commentButton = new Button();
-            commentButton.BackgroundImage = Image.FromFile("../../img/comment.png");
+            commentButton.BackgroundImage = Image.FromFile("../../img/feed/comment.png");
             commentButton.BackgroundImageLayout = ImageLayout.Stretch;
             commentButton.Size = new Size(110, 35);
             commentButton.Name = "comment" + i_Counter;
             commentButton.TabIndex = 8;
-            commentButton.ForeColor = Color.FromArgb(0, 48, 88, 152);
+            commentButton.ForeColor = Color.FromArgb(0, 48, 88, 152); 
             commentButton.MouseClick += commentButton_MouseClick;
             innerPanel.Controls.Add(commentButton);
             commentButton.Location = setLocation(commentButton, "likesAndComments" + i_Counter, 240, 10);
@@ -399,7 +429,7 @@ namespace FacebookAppUI
         {
             likeButton = new Button();
             likeButton.Tag = i_PostToBuildFor.IsLikedByUser;
-            likeButton.BackgroundImage = i_PostToBuildFor.IsLikedByUser ? Image.FromFile("../../img/LikeCommenton.png") : Image.FromFile("../../img/likeButton.png");
+            likeButton.BackgroundImage = i_PostToBuildFor.IsLikedByUser ? Image.FromFile("../../img/feed/LikeCommenton.png") : Image.FromFile("../../img/feed/likeButton.png");
             likeButton.BackgroundImageLayout = ImageLayout.Stretch;
             likeButton.Size = new Size(110, 35);
             likeButton.Name = "like" + i_Counter;
@@ -411,19 +441,6 @@ namespace FacebookAppUI
             return likeButton;
         }
         
-        private void sortFeedByFriends()
-        {
-            this.Controls.Remove(outerPanel);
-            this.Controls.Remove(filterBarControl);
-            displayFeed(Server.GetFollowedFriendsFeed());
-        }
-
-        private void sortFeedByLike()
-        {
-            this.Controls.Remove(outerPanel);
-            this.Controls.Remove(filterBarControl);
-            displayFeed(Server.GetSortedFeedList());
-        }
         #endregion
 
         #region About
@@ -479,7 +496,7 @@ namespace FacebookAppUI
             System.Drawing.Drawing2D.GraphicsPath gp = new System.Drawing.Drawing2D.GraphicsPath();
             gp.AddEllipse(0, 0, 70, 70);
             picture.Region = new Region(gp);
-            picture.BackgroundImage = Image.FromFile("../../img/aboutIcon" + i_Counter + ".png");
+            picture.BackgroundImage = Image.FromFile("../../img/about/aboutIcon" + i_Counter + ".png");
             picture.BackgroundImageLayout = ImageLayout.Stretch;
             picture.Margin = new Padding(0, 10, 0, 0);
             int column = (i_Counter / 4) == 0 ? 0 : 2;
@@ -527,7 +544,7 @@ namespace FacebookAppUI
                 outerPanel.Controls.Add(picture);
 
                 picture = new PictureBox();
-                picture.BackgroundImage = Server.User.m_FriendsList[i].Follow ? Image.FromFile("../../img/follow.png") : Image.FromFile("../../img/unfollow.png");
+                picture.BackgroundImage = Server.User.m_FriendsList[i].Follow ? Image.FromFile("../../img/friend/follow.png") : Image.FromFile("../../img/friend/unfollow.png");
                 picture.BackgroundImageLayout = ImageLayout.Stretch;
                 picture.Location = new Point(350, 22);
                 picture.Size = new Size(40, 40);
@@ -578,24 +595,11 @@ namespace FacebookAppUI
             this.Controls.Add(albumTitle);
             albumTitle.BringToFront();
 
-            albumDescription = new Label();
-            albumDescription.Text = i_Album.Description != null ? i_Album.Description : "click to add description";
-            albumDescription.Font = new Font("Segoe UI", 12, FontStyle.Bold, GraphicsUnit.Pixel, (byte)177);
-            albumDescription.Location = new Point(360, 40);
-            albumDescription.Name = i_AlbumId.ToString();
-            albumDescription.Size = new Size(450, 40);
-            albumDescription.Tag = "AlbumDescription";
-            albumDescription.TextAlign = ContentAlignment.MiddleCenter;
-            albumDescription.BackColor = Color.FromArgb(233, 235, 238);
-            albumDescription.MouseDoubleClick += changeText_Click;
-            this.Controls.Add(albumDescription);
-            albumDescription.BringToFront();
-
             initGallary();
             rightControl.Size = new Size(dataFrame.Width, dataFrame.Height - 80);
             rightControl.Location = new Point(360, 80);
             
-            for (int i = 0; i < i_Album.Photos.Count; i++)
+            for (int i = 0; i < i_Album.Count; i++)
             {
                 string name = Server.User.m_Album[i_AlbumId].Photos[i].Name;
                 string picture = Server.User.m_Album[i_AlbumId].Photos[i].PictureNormalURL;
@@ -608,7 +612,6 @@ namespace FacebookAppUI
             addToGallary();
         }
 
-        
         private void buildGallary<T>(List<T> i_Items)
         {
             initGallary();

@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Windows.Forms;
 using FacebookWrapper;
 using FacebookWrapper.ObjectModel;
+using FBUser;
 using Post = FBUser.Post;
 
 namespace FacebookAppServer
@@ -55,7 +55,7 @@ namespace FacebookAppServer
         }
 
         internal static FBUser.FBUser m_User;
-
+        
         public static FBUser.FBUser User
         {
             get
@@ -63,10 +63,11 @@ namespace FacebookAppServer
                 return m_User;
             }
         }
-
+        
         internal static DateTime? LastUpdateData;
         
         private static readonly int sr_ProcessesAtLoading = 14;
+
         public static int ProcessesAtLoading
         {
             get
@@ -85,7 +86,7 @@ namespace FacebookAppServer
             }
         }
 
-        internal static string m_Error;
+        internal static string m_Error = string.Empty;
 
         public static string Error
         {
@@ -110,39 +111,19 @@ namespace FacebookAppServer
             ServerUtils.InitEntity(i_User);
         }
 
-        public static List<Tuple<FBUser.Post, string, Image>> GetFollowedFriendsFeed()
-        {
-            return FeedUtils.BuildFeedListByFollowedFriends(m_User);
-        }
-
-        public static List<Tuple<FBUser.Post, string, Image>> GetSortedFeedList()
-        {
-            return FeedUtils.SortFeedByLikes();
-        }
-
-        public static void SetFilterBarStatus(string i_FilterToActivate)
-        {
-            FeedUtils.SetFilterBarStatus(i_FilterToActivate);
-        }
-
-        public static Tuple<bool, bool> GetFilterBarStatus()
-        {
-            return FeedUtils.GetFilterBarStatus();
-        }
-        
         public static List<string> GetAllCardsOptions()
         {
             return GreetingCardHandler.GetAllCardsOptions();
         }
 
-        public static Tuple<FBUser.Post, string, Image> GetPost(int i_PostId)
+        public static Post GetPost(int i_PostId)
         {
             return PostUtils.GetPost(i_PostId);
         }
 
-        public static void NotifyAboutLike(Post i_Post)
+        public static void ActOnLike(Post i_Post)
         {
-            PostUtils.NotifyAboutLike(i_Post);
+            PostUtils.ActOnLike(i_Post);
         }
 
         public static void NotifyAboutComment(Post i_Post)
@@ -158,11 +139,6 @@ namespace FacebookAppServer
         public static Form GetGreetingCard(string i_CardName, FBUser.FBUser i_Friend)
         {
             return GreetingCardsUtils.GetGreetingCard(i_CardName, i_Friend);
-        }
-
-        public static void SendCardByMail(Form i_CardToSend, FBUser.FBUser i_Friend)
-        {
-            GreetingCardsUtils.SendCardByEmail(i_CardToSend, i_Friend.m_About.Email);
         }
     }
 }

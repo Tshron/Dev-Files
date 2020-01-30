@@ -11,7 +11,7 @@ namespace GreetingCard
 {
     public class GreetingCard : IGreetingCardPlan
     {
-        public Form Form{ get; set; }
+        public Form Form { get; set; }
 
         public Image BackImage { get; set; }
 

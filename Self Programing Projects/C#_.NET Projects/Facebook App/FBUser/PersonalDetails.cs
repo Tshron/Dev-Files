@@ -20,6 +20,8 @@ namespace FBUser
 
         public Image ProfilePicture { get; set; }
 
+        public eGender Gender { get; set; }
+
         public PersonalDetails(string i_Name, string i_Email)
         {
             Name = i_Name;

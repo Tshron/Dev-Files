@@ -4,16 +4,17 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{BA9F0BFD-2BF2-4786-86E0-F4B5BCCAD46B}</ProjectGuid>
+    <ProjectGuid>{F7F670E3-62D5-4F3B-9505-3840708FC034}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>FacebookAppServer</RootNamespace>
     <AssemblyName>FacebookAppServer</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -23,6 +24,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -30,24 +32,12 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Facebook">
-      <HintPath>..\..\..\..\..\Documents\מדמח 2020\Design Patterns\01_FB01_BasicFacebookFeatures.V6.8.0.18\01_FB01_BasicFacebookFeatures.V6.8.0.18\FBApi\Facebook.dll</HintPath>
-    </Reference>
-    <Reference Include="FbGraphApiWrapper, Version=6.8.0.18, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\Documents\מדמח 2020\Design Patterns\01_FB01_BasicFacebookFeatures.V6.8.0.18\01_FB01_BasicFacebookFeatures.V6.8.0.18\FBApi\FbGraphApiWrapper.dll</HintPath>
-    </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Drawing" />
-    <Reference Include="System.Windows.Forms" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Net.Http" />
-    <Reference Include="System.Xml" />
+    <None Include="App.config" />
+    <None Include="Settings.StyleCop" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AboutUtils.cs" />
@@ -70,21 +60,29 @@
     <Compile Include="XmlUtils.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\EmailSender\EmailSender.csproj">
-      <Project>{5d67722f-4353-4599-afc2-8eed557df3fb}</Project>
-      <Name>EmailSender</Name>
-    </ProjectReference>
     <ProjectReference Include="..\FBUser\FBUser.csproj">
-      <Project>{0f738aca-08fa-46e4-a67d-3e615e5d62c4}</Project>
+      <Project>{026c7a53-53aa-436b-9fb8-3d3385396148}</Project>
       <Name>FBUser</Name>
     </ProjectReference>
     <ProjectReference Include="..\GreetingCard\GreetingCard.csproj">
-      <Project>{1e74fee5-7d1f-4231-91ba-bb45c889743f}</Project>
+      <Project>{c3bf9f53-0006-4e02-a4ca-03280e56dd3b}</Project>
       <Name>GreetingCard</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Properties\" />
+    <Reference Include="Facebook, Version=6.0.10.0, Culture=neutral, PublicKeyToken=58cb4f2111d1e6de, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\מדמח 2020\Design Patterns\01_FB01_BasicFacebookFeatures.V6.8.0.18\01_FB01_BasicFacebookFeatures.V6.8.0.18\FBApi\Facebook.dll</HintPath>
+    </Reference>
+    <Reference Include="FbGraphApiWrapper, Version=6.8.0.18, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\מדמח 2020\Design Patterns\01_FB01_BasicFacebookFeatures.V6.8.0.18\01_FB01_BasicFacebookFeatures.V6.8.0.18\FBApi\FbGraphApiWrapper.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Serialization" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

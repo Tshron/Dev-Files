@@ -21,9 +21,10 @@ namespace FacebookAppServer
             bool emptyObject = true;
             foreach (var prop in i_Type.GetType().GetProperties())
             {
-                if (i_Type.GetType().GetProperty(prop.Name).GetValue(i_Type, null) != null)
+                if ((i_Type.GetType().GetProperty(prop.Name).GetValue(i_Type, null) != null) && ((prop.Name != "Messages")))
                 {
                     emptyObject = false;
+                    break;
                 }
             }
 
@@ -33,15 +34,18 @@ namespace FacebookAppServer
         internal static void EmptyField(Settings i_Type, List<FieldMessage<string, string>> i_Fields)
         {
             StringBuilder message = new StringBuilder();
-            foreach(FieldMessage<string,string> field in i_Type.Messages)
+            foreach(FieldMessage<string, string> field in i_Type.Messages)
             {
                 if (i_Type.GetType().GetProperty(field.Key).GetValue(i_Type, null) == null)
                 {
                     message.AppendFormat("{0}", field.Value);
                 }
             }
-            
-            Server.m_Error = message.ToString();
+
+            if (!string.IsNullOrEmpty(message.ToString()))
+            {
+                Server.m_Error = message.ToString();
+            }
         }
     }
 }

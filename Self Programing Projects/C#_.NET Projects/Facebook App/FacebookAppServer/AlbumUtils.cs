@@ -1,6 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Net.Sockets;
 using FacebookWrapper.ObjectModel;
+using Album = FBUser.Album;
+using Photo = FBUser.Photo;
 
 namespace FacebookAppServer
 {
@@ -47,7 +51,7 @@ namespace FacebookAppServer
             return fbAlbums;
         }
 
-        private static FBUser.Album collectFriendsPhotos(List<FBUser.Album> i_Albums, string i_AlbumPicture)
+        private static FBUser.Album collectFriendsPhotos(IEnumerable<FBUser.Album> i_Albums, string i_AlbumPicture)
         {
             FBUser.Album friendsAlbum = new FBUser.Album(i_AlbumPicture, "My friends and I", "With my Friends!", null);
 
@@ -68,22 +72,45 @@ namespace FacebookAppServer
             return friendsAlbum;
         }
 
+        internal static void UpdateWithFriendsAlbum(string i_FriendToUpdate)
+        {
+            Album friendsAlbum = Server.m_User.m_Album.FirstOrDefault(a => a.Name == " With my Friends!") ?? new Album("default", "My friends and I", "With my Friends!", null);
+
+                if(friendsAlbum.Photos.FindAll(p => p.TaggedPeopleIds.Contains(i_FriendToUpdate)).Count > 0)
+            {
+                friendsAlbum.Photos.RemoveAll(
+                    p => p.TaggedPeopleIds.Contains(i_FriendToUpdate) && p.TaggedPeopleIds.Count == 1);
+            }
+            else
+            {
+                foreach(Album album in Server.m_User.m_Album)
+                {
+                    foreach(Photo photo in album.Photos)
+                    {
+                        if(photo.TaggedPeopleIds.Contains(i_FriendToUpdate))
+                        {
+                            friendsAlbum.Photos.Add(photo);
+                        }
+                    }
+                }
+            }
+
+            if(friendsAlbum.Photos.Count > 0)
+            {
+                Server.m_User.m_Album.Add(friendsAlbum);
+            }
+        }
+
         private static void updateAlbumTitle(int i_Id, string i_Title)
         {
             Server.m_User.m_Album[i_Id].Name = i_Title;
         }
-
-        private static void updateAlbumDescription(int i_Id, string i_Discription)
-        {
-            Server.m_User.m_Album[i_Id].Description = i_Discription;
-        }
-
+        
         internal static List<Action<int, string>> UpdateFields()
         {
             List<Action<int, string>> functions = new List<Action<int, string>>();
 
             functions.Add(new Action<int, string>(updateAlbumTitle));
-            functions.Add(new Action<int, string>(updateAlbumDescription));
 
             return functions;
         }

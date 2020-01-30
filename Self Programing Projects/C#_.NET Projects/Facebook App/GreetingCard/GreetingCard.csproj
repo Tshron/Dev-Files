@@ -4,16 +4,17 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{1E74FEE5-7D1F-4231-91BA-BB45C889743F}</ProjectGuid>
+    <ProjectGuid>{C3BF9F53-0006-4E02-A4CA-03280E56DD3B}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>GreetingCard</RootNamespace>
     <AssemblyName>GreetingCard</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -23,6 +24,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -30,30 +32,50 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Drawing" />
-    <Reference Include="System.Windows.Forms" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Net.Http" />
-    <Reference Include="System.Xml" />
+    <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BirthdayGreetingCard.cs" />
     <Compile Include="FriendsAnniversaryGreetingCard.cs" />
     <Compile Include="GreetingCard.cs" />
-    <Compile Include="IGreetingCardBuilder.cs" />
     <Compile Include="GreetingCardForm.cs" />
     <Compile Include="GreetingCardMaker.cs" />
+    <Compile Include="IGreetingCardBuilder.cs" />
     <Compile Include="IGreetingCardPlan.cs" />
     <Compile Include="LoveGreetingCard.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Properties\" />
+    <Reference Include="System" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows" />
+    <Reference Include="System.Windows.Forms" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="img\1.png.jpeg" />
+    <Content Include="img\birthdayBackground.jpg" />
+    <Content Include="img\birthdayBackground.png" />
+    <Content Include="img\birthdayImg0.png" />
+    <Content Include="img\birthdayImg1.png" />
+    <Content Include="img\birthdayImg2.png" />
+    <Content Include="img\blueBackground.png" />
+    <Content Include="img\cardPick0.png" />
+    <Content Include="img\cardPick1.png" />
+    <Content Include="img\cardPick2.png" />
+    <Content Include="img\envelope.jfif" />
+    <Content Include="img\envelope.png" />
+    <Content Include="img\envelope1.png" />
+    <Content Include="img\FacebookCardImg0.png" />
+    <Content Include="img\FacebookCardImg1.png" />
+    <Content Include="img\FacebookCardImg2.png" />
+    <Content Include="img\LoveBackground.png" />
+    <Content Include="img\LoveCardImg0.png" />
+    <Content Include="img\LoveCardImg1.png" />
+    <Content Include="img\LoveCardImg2.png" />
+    <Content Include="img\WhatsApp Image 2017-08-23 at 09.45.48.jpeg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

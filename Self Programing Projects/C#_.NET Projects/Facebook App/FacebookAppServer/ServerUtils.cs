@@ -4,6 +4,7 @@ using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 using FacebookWrapper.ObjectModel;
+using FBUser;
 
 namespace FacebookAppServer
 {
@@ -57,7 +58,7 @@ namespace FacebookAppServer
                 }
 
                 UpdateStatus(string.Format(s_StartingStatus, "post"));
-                user.m_UserPosts = PostUtils.SetPosts(i_User.Posts, i_User.ImageSmall, user.m_About.Name);
+                user.m_UserPosts = PostUtils.SetPosts(ref user, i_User.Posts, i_User.ImageSmall, user.m_About.Name);
                 UpdateStatus(string.Format(s_FinishStatus, "post"));
             }));
             tasks.Add(Task.Run(() =>
@@ -80,7 +81,7 @@ namespace FacebookAppServer
                 }
 
                 UpdateStatus(string.Format(s_StartingStatus, "feed"));
-                user.m_Feed = FeedUtils.BuildUserFeed(user);
+                user.m_Feed = new Feed(FeedUtils.BuildUserFeed(user));
                 UpdateStatus(string.Format(s_FinishStatus, "feed"));
             }));
             
@@ -112,7 +113,7 @@ namespace FacebookAppServer
                     Thread.Sleep(sr_SleepFor);
                 }
 
-                user.m_UserPosts = PostUtils.SetPosts(i_User.Posts, i_User.ImageSmall, user.m_About.Name);
+                user.m_UserPosts = PostUtils.SetPosts(ref user, i_User.Posts, i_User.ImageSmall, user.m_About.Name);
             }));
 
             Task.WaitAll(tasks.ToArray());

@@ -28,7 +28,7 @@ namespace FacebookAppUI
 
         private void errorComponent()
         {
-            Image background = Image.FromFile("../../img/FacebookLoginBackground.png");
+            Image background = Image.FromFile("../../img/login/FacebookLoginBackground.png");
 
             Label label = new Label();
             label.Text = string.Format("System Error:\n{0}\nThis modified require restart", Server.Error);
@@ -73,7 +73,7 @@ namespace FacebookAppUI
             /// 
             /// Login
             ///
-            Image loginButtonImage = Image.FromFile("../../img/login.png");
+            Image loginButtonImage = Image.FromFile("../../img/login/login.png");
             this.loginButton.BackgroundImage = loginButtonImage;
             this.loginButton.Location = new System.Drawing.Point(323, 400);
 
@@ -88,7 +88,7 @@ namespace FacebookAppUI
             /// exit
             ///
             exitButton = new PictureBox();
-            exitButton.ImageLocation = "../../img/exitLogin.png";
+            exitButton.ImageLocation = "../../img/login/exitLogin.png";
             exitButton.Size = new Size(40,40);
             exitButton.Location = new Point(0, 0);
             exitButton.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -98,7 +98,7 @@ namespace FacebookAppUI
             // 
             // Form1
             // 
-            Image background = Image.FromFile("../../img/FacebookLoginBackground.png");
+            Image background = Image.FromFile("../../img/login/FacebookLoginBackground.png");
             this.BackgroundImage = background;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(background.Width, background.Height);
@@ -124,7 +124,7 @@ namespace FacebookAppUI
             ///
             ///  run as
             ///
-            Image runAsButtonImage = Image.FromFile("../../img/loginas.png");
+            Image runAsButtonImage = Image.FromFile("../../img/login/loginas.png");
             this.runAsButton.BackgroundImage = runAsButtonImage;
             this.runAsButton.Location = new System.Drawing.Point(323, 350);
             this.runAsButton.Size = new System.Drawing.Size(runAsButtonImage.Width, runAsButtonImage.Height);
@@ -159,12 +159,13 @@ namespace FacebookAppUI
 
         private void LoginInHoverEnter(object sender, EventArgs e)
         {
-            Image loginButtonImage = Image.FromFile("../../img/loginhover.png");
+            Image loginButtonImage = Image.FromFile("../../img/login/loginhover.png");
             this.loginButton.BackgroundImage = loginButtonImage;
         }
+
         private void LoginInHoverLeave(object sender, EventArgs e)
         {
-            Image loginButtonImage = Image.FromFile("../../img/login.png");
+            Image loginButtonImage = Image.FromFile("../../img/login/login.png");
             this.loginButton.BackgroundImage = loginButtonImage;
         }
 

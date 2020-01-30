@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Drawing;
-using FacebookWrapper.ObjectModel;
+﻿using FacebookWrapper.ObjectModel;
 using FBUser;
 
 namespace FacebookAppServer
@@ -15,6 +13,7 @@ namespace FacebookAppServer
             ps.ProfileUrl = i_User.PictureLargeURL;
             ps.Id = i_User.Id;
             ps.ProfilePicture = i_User.ImageSmall;
+            ps.Gender = i_User.Gender.HasValue ? i_User.Gender.Value == User.eGender.female ? FBUser.eGender.female : eGender.male : eGender.male;
             return ps;
         }
     }

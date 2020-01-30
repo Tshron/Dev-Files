@@ -1,0 +1,12 @@
+C:\Users\tshro\Documents\GitHub\Dev-Files\Self Programing Projects\C#_.NET Projects\Facebook App\PanelBar\bin\Debug\PanelBar.dll
+C:\Users\tshro\Documents\GitHub\Dev-Files\Self Programing Projects\C#_.NET Projects\Facebook App\PanelBar\bin\Debug\PanelBar.pdb
+C:\Users\tshro\Documents\GitHub\Dev-Files\Self Programing Projects\C#_.NET Projects\Facebook App\PanelBar\bin\Debug\FBUser.dll
+C:\Users\tshro\Documents\GitHub\Dev-Files\Self Programing Projects\C#_.NET Projects\Facebook App\PanelBar\bin\Debug\FbGraphApiWrapper.dll
+C:\Users\tshro\Documents\GitHub\Dev-Files\Self Programing Projects\C#_.NET Projects\Facebook App\PanelBar\bin\Debug\Facebook.dll
+C:\Users\tshro\Documents\GitHub\Dev-Files\Self Programing Projects\C#_.NET Projects\Facebook App\PanelBar\bin\Debug\FBUser.pdb
+C:\Users\tshro\Documents\GitHub\Dev-Files\Self Programing Projects\C#_.NET Projects\Facebook App\PanelBar\bin\Debug\FBUser.dll.config
+C:\Users\tshro\Documents\GitHub\Dev-Files\Self Programing Projects\C#_.NET Projects\Facebook App\PanelBar\obj\Debug\PanelBar.csprojAssemblyReference.cache
+C:\Users\tshro\Documents\GitHub\Dev-Files\Self Programing Projects\C#_.NET Projects\Facebook App\PanelBar\obj\Debug\PanelBar.csproj.CoreCompileInputs.cache
+C:\Users\tshro\Documents\GitHub\Dev-Files\Self Programing Projects\C#_.NET Projects\Facebook App\PanelBar\obj\Debug\PanelBar.csproj.CopyComplete
+C:\Users\tshro\Documents\GitHub\Dev-Files\Self Programing Projects\C#_.NET Projects\Facebook App\PanelBar\obj\Debug\PanelBar.dll
+C:\Users\tshro\Documents\GitHub\Dev-Files\Self Programing Projects\C#_.NET Projects\Facebook App\PanelBar\obj\Debug\PanelBar.pdb

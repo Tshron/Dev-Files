@@ -14,7 +14,7 @@ namespace GreetingCard
 
         public void BuildGreetingCardForm()
         {
-            m_GreetingCard.SetGreetingCardForm(base.InitGreetingCardForm()); 
+            m_GreetingCard.SetGreetingCardForm(InitGreetingCardForm()); 
         }
 
         public void BuildGreetingCardBackGround()

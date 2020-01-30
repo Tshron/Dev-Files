@@ -9,21 +9,21 @@ namespace FacebookAppServer
 {
     internal class PostUtils
     {
-        internal static List<FBUser.Post> SetPosts(FacebookObjectCollection<Post> i_Posts, Image i_UserPhoto, string i_UserName)
+        internal static List<FBUser.Post> SetPosts(ref FBUser.FBUser i_UserAsRef, FacebookObjectCollection<Post> i_Posts, Image i_UserPhoto, string i_UserName)
         {
             List<FBUser.Post> posts = new List<FBUser.Post>();
 
             foreach (Post post in i_Posts)
             {
-                posts.Add(new FBUser.Post(i_UserName, post.Caption, post.Description, post.CreatedTime, ServerUtils.RandomAmountOf(), ServerUtils.RandomAmountOf(), i_UserPhoto, post.PictureURL));
+                posts.Add(new FBUser.Post(i_UserAsRef, post.Caption, post.Description, post.CreatedTime, ServerUtils.RandomAmountOf(), ServerUtils.RandomAmountOf(), i_UserPhoto, post.PictureURL));
             }
 
             return posts;
         }
 
-        internal static void NotifyAboutLike(FBUser.Post i_Post)
+        internal static void ActOnLike(FBUser.Post i_Post)
         {
-            i_Post.NotifyAboutLike();
+            i_Post.ActOnLike();
         }
 
         internal static void NotifyAboutComment(FBUser.Post i_Post)
@@ -31,9 +31,9 @@ namespace FacebookAppServer
             i_Post.NotifyAboutComment();
         }
 
-        internal static Tuple<FBUser.Post, string, Image> GetPost(int i_PostId)
+        internal static FBUser.Post GetPost(int i_PostId)
         {
-            return Server.User.m_Feed.First(post => post.Item1.PostId == i_PostId);
+            return Server.User.m_Feed.First(post => post.PostId == i_PostId);
         }
     }
 }

@@ -13,6 +13,11 @@ namespace FacebookAppServer
                 friendList.Add(ServerUtils.CreateFriend(friend));
             }
 
+            foreach(FBUser.FBUser friend in friendList)
+            {
+                friend.m_FollowingFriendDelegates += AlbumUtils.UpdateWithFriendsAlbum;
+            }
+
             return friendList;
         }
     }

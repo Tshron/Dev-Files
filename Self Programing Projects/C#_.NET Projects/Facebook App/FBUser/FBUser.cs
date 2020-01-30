@@ -11,11 +11,13 @@ namespace FBUser
         public List<FBUser> m_FriendsList;
         public List<Post> m_UserPosts;
         public List<Group> m_UserGroups = new List<Group>();
-        public List<Tuple<Post, string, Image>> m_Feed = new List<Tuple<Post, string, Image>>();
+        public Feed m_Feed;
+
+        public event Action<string> m_FollowingFriendDelegates;
 
         public bool Follow { get; set; }
 
-        public string UserId{ get; set; }
+        public string UserId { get; set; }
 
         public FBUser(string i_UserId)
         {
@@ -48,6 +50,13 @@ namespace FBUser
             }
 
             return followFriend;
+        }
+
+        public void ChangeFriendStatus(int i_FriendId)
+        {
+            m_FriendsList[i_FriendId].Follow = !m_FriendsList[i_FriendId].Follow;
+            bool onOrOff = m_FriendsList[i_FriendId].Follow;
+            m_FriendsList[i_FriendId].m_FollowingFriendDelegates.Invoke(m_FriendsList[i_FriendId].UserId);
         }
     }
 }

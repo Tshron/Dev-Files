@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
-using System.Security.Policy;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace GreetingCard
@@ -15,7 +10,7 @@ namespace GreetingCard
         
         public void BuildGreetingCardForm()
         {
-            m_GreetingCard.SetGreetingCardForm(base.InitGreetingCardForm());
+            m_GreetingCard.SetGreetingCardForm(InitGreetingCardForm());
         }
 
         public void BuildGreetingCardBackGround()

@@ -1,0 +1,10 @@
+C:\Users\tshro\Documents\GitHub\Dev-Files\Self Programing Projects\C#_.NET Projects\Facebook App\FBUser\bin\Debug\FBUser.dll.config
+C:\Users\tshro\Documents\GitHub\Dev-Files\Self Programing Projects\C#_.NET Projects\Facebook App\FBUser\bin\Debug\FBUser.dll
+C:\Users\tshro\Documents\GitHub\Dev-Files\Self Programing Projects\C#_.NET Projects\Facebook App\FBUser\bin\Debug\FBUser.pdb
+C:\Users\tshro\Documents\GitHub\Dev-Files\Self Programing Projects\C#_.NET Projects\Facebook App\FBUser\bin\Debug\Facebook.dll
+C:\Users\tshro\Documents\GitHub\Dev-Files\Self Programing Projects\C#_.NET Projects\Facebook App\FBUser\bin\Debug\FbGraphApiWrapper.dll
+C:\Users\tshro\Documents\GitHub\Dev-Files\Self Programing Projects\C#_.NET Projects\Facebook App\FBUser\obj\Debug\FBUser.csprojAssemblyReference.cache
+C:\Users\tshro\Documents\GitHub\Dev-Files\Self Programing Projects\C#_.NET Projects\Facebook App\FBUser\obj\Debug\FBUser.csproj.CoreCompileInputs.cache
+C:\Users\tshro\Documents\GitHub\Dev-Files\Self Programing Projects\C#_.NET Projects\Facebook App\FBUser\obj\Debug\FBUser.csproj.CopyComplete
+C:\Users\tshro\Documents\GitHub\Dev-Files\Self Programing Projects\C#_.NET Projects\Facebook App\FBUser\obj\Debug\FBUser.dll
+C:\Users\tshro\Documents\GitHub\Dev-Files\Self Programing Projects\C#_.NET Projects\Facebook App\FBUser\obj\Debug\FBUser.pdb

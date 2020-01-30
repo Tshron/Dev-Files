@@ -13,7 +13,7 @@ namespace FacebookAppServer
                 List<FBUser.Post> groupPosts = new List<FBUser.Post>();
                 foreach (Post groupPost in group.WallPosts)
                 {
-                    groupPosts.Add(new FBUser.Post(groupPost.From.Name, groupPost.Caption, groupPost.Description, groupPost.CreatedTime, ServerUtils.RandomAmountOf(), ServerUtils.RandomAmountOf(), group.ImageSmall, groupPost.PictureURL));
+                    groupPosts.Add(new FBUser.Post(new FBUser.FBUser(groupPost.From.Id), groupPost.Caption, groupPost.Description, groupPost.CreatedTime, ServerUtils.RandomAmountOf(), ServerUtils.RandomAmountOf(), group.ImageSmall, groupPost.PictureURL));
                 }
 
                 groups.Add(new FBUser.Group(group.Name, groupPosts));

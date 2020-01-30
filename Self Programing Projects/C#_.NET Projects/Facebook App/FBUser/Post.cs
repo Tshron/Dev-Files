@@ -11,13 +11,13 @@ namespace FBUser
 
         public int PostId { get; set; }
 
-        public string AuthorName { get; set; }
+        public FBUser Author { get; set; }
 
         public string PostContent { get; }
 
         public string PostCaption { get; set; }
 
-        public DateTime? PostCreateTime { get; }
+        public DateTime PostCreateTime { get; }
 
         public int AmountOfLikes { get; set; }
 
@@ -29,13 +29,13 @@ namespace FBUser
 
         public bool IsLikedByUser { get; set; }
 
-        public Post(string i_AuthorName, string i_PostCaption, string i_PostContent, DateTime? i_PostCreateTime, int i_AmountOfLikes, int i_AmountOfComments, Image i_PostProfileImage, string i_PostContentImageUrl)
+        public Post(FBUser i_Author, string i_PostCaption, string i_PostContent, DateTime? i_PostCreateTime, int i_AmountOfLikes, int i_AmountOfComments, Image i_PostProfileImage, string i_PostContentImageUrl)
         {
             this.PostId = s_PostId++;
-            this.AuthorName = i_AuthorName;
+            this.Author = i_Author;
             this.PostContent = i_PostContent;
             this.PostCaption = i_PostCaption;
-            this.PostCreateTime = i_PostCreateTime;
+            this.PostCreateTime = i_PostCreateTime.HasValue ? i_PostCreateTime.Value : new DateTime();
             this.AmountOfLikes = i_AmountOfLikes;
             this.AmountOfComments = i_AmountOfComments;
             this.PostProfileImage = i_PostProfileImage;
@@ -43,7 +43,7 @@ namespace FBUser
             this.IsLikedByUser = false;
         }
 
-        public void NotifyAboutLike()
+        public void ActOnLike()
         {
             if(IsLikedByUser)
             {
